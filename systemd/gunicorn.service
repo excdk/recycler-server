@@ -1,0 +1,13 @@
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+User=www
+Group=www-data
+WorkingDirectory=/home/rustam/University/recycler/recycler-server/src
+ExecStart=/home/rustam/University/recycler/recycler-server/env/bin/gunicorn --workers 3 --bind unix:/home/rustam/University/recycler/recycler-server/gunicorn/gunicorn.sock config.wsgi:application --access-logfile /home/rustam/University/recycler/recycler-server/gunicorn/access.log --error-logfile /home/rustam/University/recycler/recycler-server/gunicorn/error.log
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
